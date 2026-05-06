@@ -1,3 +1,33 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: api
+    name: gateway-api
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+
+        - id: core-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/core/**
+          filters:
+            - StripPrefix=1
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
