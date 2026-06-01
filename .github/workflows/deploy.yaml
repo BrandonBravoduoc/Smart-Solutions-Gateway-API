@@ -36,6 +36,6 @@ jobs:
     - name: Actualizar el servicio en Amazon ECS
       run: |
         aws ecs update-service \
-          --cluster ${{ secrets.CLUSTER_SECRET }} \
+          --cluster  default \
           --service api-gateway \
           --force-new-deployment
