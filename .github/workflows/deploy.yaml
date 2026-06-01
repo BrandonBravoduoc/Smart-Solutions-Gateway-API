@@ -1,4 +1,4 @@
-name: Desplegar a AWS ECR
+name: Desplegar a AWS ECR y ECS
 
 on:
   push:
@@ -32,3 +32,10 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Actualizar el servicio en Amazon ECS
+      run: |
+        aws ecs update-service \
+          --cluster default \
+          --service api-gateway \
+          --force-new-deployment
