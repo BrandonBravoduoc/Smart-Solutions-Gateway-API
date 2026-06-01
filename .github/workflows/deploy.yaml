@@ -37,5 +37,5 @@ jobs:
       run: |
         aws ecs update-service \
           --cluster  default \
-          --service api-gateway \
+          --service api-gateway-f145 \
           --force-new-deployment
