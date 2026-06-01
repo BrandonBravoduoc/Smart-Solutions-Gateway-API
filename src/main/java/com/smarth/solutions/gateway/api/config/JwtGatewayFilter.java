@@ -31,6 +31,7 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
 
         if (path.contains("/api/v1/auth") || 
+            path.contains("/api/v1/healths") ||
             path.contains("/api/v1/regions") || 
             path.contains("/api/v1/communes") || 
             path.contains("/api/v1/addresses") || 
