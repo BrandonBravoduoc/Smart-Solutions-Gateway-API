@@ -34,7 +34,6 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
             path.contains("/api/v1/healths") ||
             path.contains("/api/v1/regions") || 
             path.contains("/api/v1/communes") ||
-            path.contains("/favicon.ico") ||
              path.contains("/api/v1/addresses") || 
             path.contains("/swagger-ui") || 
             path.contains("/v3/api-docs")){
