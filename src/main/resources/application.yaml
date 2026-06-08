@@ -13,7 +13,7 @@ spring:
         - id: auth-service
           uri: http://15.228.73.12:8081
           predicates:
-            - Path=/api/v1/auth/**
+            - Path=/api/v1/auth/**, /api/v1/regions/**, /api/v1/communes/**, /api/v1/addresses/**
     
       globalcors:
         add-to-simple-url-handler-mapping: true
