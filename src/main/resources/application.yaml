@@ -19,19 +19,6 @@ spring:
                   - /api/v1/auth/**
                   - /api/v1/regions/**
                   - /api/v1/communes/**
-                  - /api/v1/addresses/**
+                  - /api/v1/addresses/**  
     
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "https://d1cvogky5serqv.cloudfront.net"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - PATCH
-              - DELETE
-              - OPTIONS 
-            allowedHeaders: "*"
-            allowCredentials: true
+
