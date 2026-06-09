@@ -14,7 +14,9 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOriginPatterns(Arrays.asList("https://*.cloudfront.net"));
+        corsConfig.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:5173",
+                "https://d1cvogky5serqv.cloudfront.net"));
         corsConfig.setMaxAge(3600L);
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(Arrays.asList("*"));

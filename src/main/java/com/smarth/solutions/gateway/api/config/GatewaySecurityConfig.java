@@ -12,7 +12,7 @@ public class GatewaySecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .cors(cors -> cors.disable())  // <-- Security no toca CORS, lo maneja CorsWebFilter
+            .cors(cors -> cors.disable())  
             .authorizeExchange(exchanges -> exchanges.anyExchange().permitAll())
             .build();
     }
