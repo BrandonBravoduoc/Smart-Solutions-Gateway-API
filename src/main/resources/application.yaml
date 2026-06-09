@@ -11,7 +11,7 @@ spring:
     gateway:
       routes:
         - id: auth-service
-          uri: http://15.228.73.12:8081
+          uri: http://172.31.35.114:8081
           predicates:
             - name: Path
               args:

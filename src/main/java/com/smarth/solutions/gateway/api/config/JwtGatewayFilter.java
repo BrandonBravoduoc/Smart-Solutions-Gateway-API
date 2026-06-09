@@ -3,7 +3,6 @@ package com.smarth.solutions.gateway.api.config;
 import com.smarth.solutions.gateway.api.service.JwtService;
 
 import io.jsonwebtoken.Claims;
-import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -15,10 +14,13 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
-@RequiredArgsConstructor
 public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
     private final JwtService jwtService;
+
+    public JwtGatewayFilter(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
