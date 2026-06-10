@@ -21,3 +21,12 @@ spring:
                   - /api/v1/communes/**
                   - /api/v1/addresses/**
                   - /api/v1/users/**
+        - id: core-service
+          uri: http://smartsolutions-core-alb-211789704.sa-east-1.elb.amazonaws.com
+          predicates:
+            - name: Path
+              args:
+                patterns:
+                  - /api/v1/subscriptions/**
+                  - /api/v1/plans/**
+
