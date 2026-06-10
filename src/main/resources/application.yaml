@@ -20,3 +20,4 @@ spring:
                   - /api/v1/regions/**
                   - /api/v1/communes/**
                   - /api/v1/addresses/**
+                  - /api/v1/users/**
