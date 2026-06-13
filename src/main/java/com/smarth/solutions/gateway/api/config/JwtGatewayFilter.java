@@ -10,13 +10,26 @@ import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Component
 public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
     private final JwtService jwtService;
+    private static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
+    private static final List<String> PUBLIC_PATHS = List.of(
+        "/api/v1/auth/**",
+        "/api/v1/healths/**",
+        "/api/v1/regions/**",
+        "/api/v1/communes/**",
+        "/api/v1/addresses/**",
+        "/swagger-ui/**",
+        "/v3/api-docs/**"
+    );
 
     public JwtGatewayFilter(JwtService jwtService) {
         this.jwtService = jwtService;
@@ -26,19 +39,15 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
-        
+
         if (request.getMethod().name().equals("OPTIONS")) {
-        return chain.filter(exchange);
+            return chain.filter(exchange);
         }
 
+        boolean isPublic = PUBLIC_PATHS.stream()
+                .anyMatch(pattern -> PATH_MATCHER.match(pattern, path));
 
-        if (path.contains("/api/v1/auth") || 
-            path.contains("/api/v1/healths") ||
-            path.contains("/api/v1/regions") || 
-            path.contains("/api/v1/communes") ||
-             path.contains("/api/v1/addresses") || 
-            path.contains("/swagger-ui") || 
-            path.contains("/v3/api-docs")){
+        if (isPublic) {
             return chain.filter(exchange);
         }
 
