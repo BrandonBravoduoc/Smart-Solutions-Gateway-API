@@ -22,14 +22,14 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
     private final JwtService jwtService;
     private static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
     private static final List<String> PUBLIC_PATHS = List.of(
-        "/api/v1/auth/**",
-        "/api/v1/healths/**",
-        "/api/v1/regions/**",
-        "/api/v1/communes/**",
-        "/api/v1/addresses/**",
-        "/swagger-ui/**",
-        "/v3/api-docs/**"
-    );
+            "/api/v1/auth/**",
+            "/api/v1/healths/**",
+            "/api/v1/regions/**",
+            "/api/v1/communes/**",
+            "/api/v1/addresses/**",
+            "/api/v1/plans",
+            "/swagger-ui/**",
+            "/v3/api-docs/**");
 
     public JwtGatewayFilter(JwtService jwtService) {
         this.jwtService = jwtService;
@@ -52,10 +52,10 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
         }
 
         HttpCookie cookie = request.getCookies().getFirst("accessToken");
-        
+
         if (cookie == null || cookie.getValue().isEmpty()) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete(); 
+            return exchange.getResponse().setComplete();
         }
 
         String token = cookie.getValue();
@@ -80,6 +80,6 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return 1; 
+        return 1;
     }
 }
