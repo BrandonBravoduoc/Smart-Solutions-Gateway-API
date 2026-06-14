@@ -29,4 +29,11 @@ spring:
                 patterns:
                   - /api/v1/subscriptions/**
                   - /api/v1/plans/**
+        - id: payment-service
+          uri: http://smartsolutions-payment-alb-42793780.sa-east-1.elb.amazonaws.com
+          predicates:
+            - name: Path
+              args:
+                patterns:
+                  - /api/payments/**
 
