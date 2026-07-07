@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouteConfig {
 
-    @Value("${auth.service.uri:http://smartsolutions-auth-alb-1154380074.sa-east-1.elb.amazonaws.com}")
+    @Value("${auth.service.uri:http://localhost:8081}")
     private String authServiceUri;
 
     @Bean
